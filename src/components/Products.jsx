@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import {AddToCartIcon} from './Icons.jsx';
+import { AddToCartIcon } from './Icons.jsx';
 import './Products.css'
 
 function Products ({ products }) {
 
     return(
-        <main>
+        <main className='products'>
             <ul>
                 {
                     products.map(product => {
