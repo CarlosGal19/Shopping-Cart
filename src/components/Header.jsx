@@ -1,15 +1,10 @@
 import Filters from './Filters';
-import PropTypes from 'prop-types';
 
-export default function Header({ changeFilters }){
+export default function Header(){
     return (
         <header>
             <h1>My Shopping Cart</h1>
-            <Filters changeFilters={changeFilters} />
+            <Filters />
         </header>
     )
 }
-
-Header.propTypes = {
-    changeFilters: PropTypes.func.isRequired,
-  };

@@ -1,8 +1,10 @@
 import './Filters.css';
 import { useState, useId } from 'react';
-import PropTypes from 'prop-types';
+import { useFilters } from '../hooks/useFilters';
 
-export default function Filters({ changeFilters }) {
+export default function Filters() {
+
+    const { setFilters } = useFilters();
 
     const [price, setPrice] = useState(0);
     const priceId = useId();
@@ -10,14 +12,14 @@ export default function Filters({ changeFilters }) {
 
     const handleChangePrice = (e) => {
         setPrice(e.target.value);
-        changeFilters(prevState => ({
+        setFilters(prevState => ({
             ...prevState,
             minPrice: e.target.value
         }))
     }
 
     const handleChangeCategory = (e) => {
-        changeFilters(prevState => ({
+        setFilters(prevState => ({
             ...prevState,
             category: e.target.value
         }))
@@ -41,7 +43,3 @@ export default function Filters({ changeFilters }) {
         </section>
     )
 }
-
-Filters.propTypes = {
-    changeFilters: PropTypes.func.isRequired,
-  };
