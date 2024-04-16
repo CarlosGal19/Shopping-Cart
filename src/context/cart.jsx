@@ -12,17 +12,18 @@ export function CartProvider({ children }) {
         // Check if the product is already in the cart
         const productIndex = cart.findIndex(p => p.id === product.id);
         if(productIndex >= 0) {
-            const newCart = structuredClone(cart);
+            const newCart = [...cart];
             newCart[productIndex].quantity++;
             return setCart(newCart);
         }
         // If the product is not in the cart, add it
-        return setCart( prevState => ({
+        return setCart(prevState => [
             ...prevState,
-            product,
-            quantity: 1
-        }));
-
+            {
+                ...product,
+                quantity: 1
+            }
+        ]);
     }
 
     function clearCart() {
