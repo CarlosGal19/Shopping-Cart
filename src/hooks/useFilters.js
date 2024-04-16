@@ -3,6 +3,7 @@ import { FiltersContext } from '../context/filters';
 
 export function useFilters() {
 
+    // Get the filters and setFilters from the context
     const { filters, setFilters } = useContext(FiltersContext);
 
     const filterProducts = (products) => {

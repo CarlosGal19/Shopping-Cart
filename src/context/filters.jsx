@@ -14,6 +14,7 @@ export function FiltersProvider ({ children }) {
       minPrice: 0
     });
 
+    // Provide the filters and setFilters to the children
     return(
         <FiltersContext.Provider value={{
             filters,

@@ -4,6 +4,7 @@ import { useFilters } from '../hooks/useFilters';
 
 export default function Filters() {
 
+    // Get the setFilters from the context
     const { setFilters } = useFilters();
 
     const [price, setPrice] = useState(0);
