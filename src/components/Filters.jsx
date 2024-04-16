@@ -24,7 +24,7 @@ export default function Filters() {
         }))
     }
 
-    return(
+    return (
         <section className='filters'>
             <div>
                 <label htmlFor={priceId}>Price</label>

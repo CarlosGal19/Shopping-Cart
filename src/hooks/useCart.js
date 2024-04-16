@@ -7,7 +7,7 @@ export function useCart() {
     const context = useContext(CartContext);
 
     // If the hook is not used within a CartProvider, throw an error
-    if(!context) {
+    if (!context) {
         throw new Error('useCart must be used within a CartProvider');
     }
 

@@ -45,4 +45,4 @@ export function CartProvider({ children }) {
 
 CartProvider.propTypes = {
     children: PropTypes.node.isRequired,
-  };
+};

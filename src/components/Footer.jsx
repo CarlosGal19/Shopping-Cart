@@ -2,7 +2,7 @@ import './Footer.css';
 
 export default function Footer() {
 
-    return(
+    return (
         <>
             <footer className="footer">
                 <p>© 2024 - All rights reserved</p>

@@ -3,7 +3,7 @@ import { AddToCartIcon, RemoveFromCartIcon } from './Icons.jsx';
 import { useCart } from '../hooks/useCart';
 import './Products.css'
 
-function Products ({ products }) {
+function Products({ products }) {
 
     const { cart, addToCart, removeFromCart } = useCart();
 
@@ -11,13 +11,13 @@ function Products ({ products }) {
         return cart.some(p => p.id === product.id)
     }
 
-    return(
+    return (
         <main className='products'>
             <ul>
                 {
                     products.map(product => {
                         const isOnCart = checkCart(product);
-                        return(
+                        return (
                             <li key={product.id}>
                                 <img src={product.thumbnail} alt={product.title} />
                                 <div>
@@ -26,12 +26,12 @@ function Products ({ products }) {
                                 <div>
                                     <button
                                         onClick={() => isOnCart ? removeFromCart(product) : addToCart(product)}
-                                        style={{backgroundColor: isOnCart ? 'red' : '#09f'}}
-                                        >
+                                        style={{ backgroundColor: isOnCart ? 'red' : '#09f' }}
+                                    >
                                         {
                                             isOnCart
-                                            ? <RemoveFromCartIcon />
-                                            : <AddToCartIcon />
+                                                ? <RemoveFromCartIcon />
+                                                : <AddToCartIcon />
                                         }
                                     </button>
                                 </div>
