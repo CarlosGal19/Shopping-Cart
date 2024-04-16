@@ -3,8 +3,6 @@ import './Footer.css';
 
 export default function Footer({ filters }) {
 
-    console.log(filters);
-
     return(
         <>
             <footer className="footer">
