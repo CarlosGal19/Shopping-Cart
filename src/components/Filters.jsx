@@ -1,10 +1,12 @@
 import './Filters.css';
-import { useState } from 'react';
+import { useState, useId } from 'react';
 import PropTypes from 'prop-types';
 
 export default function Filters({ changeFilters }) {
 
     const [price, setPrice] = useState(0);
+    const priceId = useId();
+    const categoryId = useId();
 
     const handleChangePrice = (e) => {
         setPrice(e.target.value);
@@ -24,13 +26,13 @@ export default function Filters({ changeFilters }) {
     return(
         <section className='filters'>
             <div>
-                <label htmlFor="price">Price</label>
-                <input type="range" name="price" id="price" min={0} max={1500} step={20} onChange={handleChangePrice} />
+                <label htmlFor={priceId}>Price</label>
+                <input type="range" name="price" id={priceId} min={0} max={1500} step={20} onChange={handleChangePrice} />
                 <span>{price}</span>
             </div>
             <div>
-                <label htmlFor="category">Category</label>
-                <select name="category" id="category" onChange={handleChangeCategory}>
+                <label htmlFor={categoryId}>Category</label>
+                <select name="category" id={categoryId} onChange={handleChangeCategory}>
                     <option value="all">All</option>
                     <option value="laptops">Laptops</option>
                     <option value="smartphones">Smartphones</option>
