@@ -11,8 +11,6 @@ function Products ({ products }) {
         return cart.some(p => p.id === product.id)
     }
 
-    console.log(cart);
-
     return(
         <main className='products'>
             <ul>
@@ -26,7 +24,10 @@ function Products ({ products }) {
                                     <strong>{product.title}</strong> - ${product.price}
                                 </div>
                                 <div>
-                                    <button onClick={() => isOnCart ? removeFromCart(product) : addToCart(product)}>
+                                    <button
+                                        onClick={() => isOnCart ? removeFromCart(product) : addToCart(product)}
+                                        style={{backgroundColor: isOnCart ? 'red' : '#09f'}}
+                                        >
                                         {
                                             isOnCart
                                             ? <RemoveFromCartIcon />

@@ -1,10 +1,30 @@
 import './Cart.css';
 import { ClearCartIcon, CartIcon } from './Icons';
+import { useCart } from '../hooks/useCart';
 import { useId } from 'react';
+import PropTypes from 'prop-types';
+
+function CartItem({ thumbnail, title, price, quantity, addToCart}) {
+    return(
+        <li>
+        <img src={thumbnail} alt={title} />
+        <div>
+            <strong>{title}</strong> - ${price}
+        </div>
+        <footer>
+            <button onClick={addToCart}>
+                Qty: {quantity}
+            </button>
+        </footer>
+        <button onClick={addToCart}>+</button>
+    </li>
+    )
+}
 
 export default function Cart() {
 
     const cartId = useId();
+    const { cart, addToCart, clearCart } = useCart();
 
     return(
         <>
@@ -14,23 +34,28 @@ export default function Cart() {
             <input type='checkbox' id={cartId} hidden />
             <aside className='cart'>
                 <ul>
-                    <li>
-                        <img src="https://i.dummyjson.com/data/products/6/thumbnail.png" alt="Yes" />
-                        <div>
-                            <strong>iPhone</strong> - $999
-                        </div>
-                        <footer>
-                            <small>
-                                Qty: 1
-                            </small>
-                        </footer>
-                        <button>+</button>
-                    </li>
+                    {
+                        cart.map(product => (
+                            <CartItem
+                                key={product.id}
+                                {...product}
+                                addToCart={() => addToCart(product)}
+                            />
+                        ))
+                    }
                 </ul>
-                <button>
+                <button onClick={clearCart}>
                     <ClearCartIcon />
                 </button>
             </aside>
         </>
     )
+}
+
+CartItem.propTypes = {
+    thumbnail: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
+    addToCart: PropTypes.func.isRequired
 }
