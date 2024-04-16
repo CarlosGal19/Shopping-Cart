@@ -1,7 +1,9 @@
-import PropTypes from 'prop-types';
+import { useFilters } from '../hooks/useFilters';
 import './Footer.css';
 
-export default function Footer({ filters }) {
+export default function Footer() {
+
+    const { filters } = useFilters();
 
     return(
         <>
@@ -14,7 +16,3 @@ export default function Footer({ filters }) {
     )
 
 }
-
-Footer.propTypes = {
-    filters: PropTypes.object.isRequired,
-};
