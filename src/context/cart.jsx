@@ -1,43 +1,13 @@
 import { createContext, useReducer } from "react";
+import { cartReducer, initialCart } from "../reducers/cart";
 import PropTypes from 'prop-types';
 
-
+// Create a context to store the cart
 export const CartContext = createContext();
 
-const initialCart = [];
-// Reducer that will update the state of the cart
-const reducer = (state, action) => {
-    const {type, payload} = action;
-    switch (type){
-        case 'ADD_TO_CART':{
-            const productIndex = state.findIndex(p => p.id === payload.id);
-            if(productIndex >= 0) {
-                const newCart = [...state];
-                newCart[productIndex].quantity++;
-                return newCart;
-            }
-            return[
-                ...state,
-                {
-                    ...payload,
-                    quantity: 1
-                }
-            ];
-        }
-        case 'REMOVE_FROM_CART':{
-            return state.filter(p => p.id !== payload.id);
-        }
-        case 'CLEAR_CART':{
-            return initialCart;
-        }
-    }
-    return state;
-}
-
-export function CartProvider({ children }) {
-
-    // useReducer to manage the state of the cart
-    const [state, dispatch] = useReducer(reducer, initialCart);
+// Provide the context to the components to access the cart
+function useCartReducer() {
+    const [state, dispatch] = useReducer(cartReducer, initialCart);
 
     const addToCart = (product) => {
         dispatch({
@@ -58,6 +28,12 @@ export function CartProvider({ children }) {
             payload: product
         });
     }
+
+    return { state, addToCart, clearCart, removeFromCart };
+}
+export function CartProvider({ children }) {
+
+    const { state, addToCart, clearCart, removeFromCart } = useCartReducer();
 
     // Provider that will wrap the application
     return (
