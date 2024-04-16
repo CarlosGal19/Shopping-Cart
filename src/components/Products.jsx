@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import { AddToCartIcon } from './Icons.jsx';
+import { useCart } from '../hooks/useCart';
 import './Products.css'
 
 function Products ({ products }) {
+
+    const { addToCart } = useCart();
 
     return(
         <main className='products'>
@@ -16,7 +19,9 @@ function Products ({ products }) {
                                     <strong>{product.title}</strong> - ${product.price}
                                 </div>
                                 <div>
-                                    <AddToCartIcon />
+                                    <button onClick={() => {addToCart(product)}}>
+                                        <AddToCartIcon />
+                                    </button>
                                 </div>
                             </li>
                         )
