@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 export const CartContext = createContext();
 
 const initialCart = [];
+// Reducer that will update the state of the cart
 const reducer = (state, action) => {
     const {type, payload} = action;
     switch (type){
@@ -35,6 +36,7 @@ const reducer = (state, action) => {
 
 export function CartProvider({ children }) {
 
+    // useReducer to manage the state of the cart
     const [state, dispatch] = useReducer(reducer, initialCart);
 
     const addToCart = (product) => {
@@ -57,6 +59,7 @@ export function CartProvider({ children }) {
         });
     }
 
+    // Provider that will wrap the application
     return (
         <CartContext.Provider value={{ cart: state, addToCart, clearCart, removeFromCart }}>
             {children}
