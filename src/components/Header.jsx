@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default function Header({ changeFilters }){
     return (
         <header>
-            <h1>My Ecommerce</h1>
+            <h1>My Shopping Cart</h1>
             <Filters changeFilters={changeFilters} />
         </header>
     )
